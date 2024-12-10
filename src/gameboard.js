@@ -17,7 +17,7 @@ class Gameboard {
     }
 
     getShip(x, y) {
-        if (this.board[x][y] == null || this.board[x][y] == 0) {
+        if (this.board[x][y] == null) {
             return null;
         }
         else {
@@ -26,7 +26,8 @@ class Gameboard {
     }
 
     receiveAttack(x, y) {
-        if (this.board[x][y] == null || this.board[x][y] == 0) {
+        if (this.board[x][y] == null) {
+            this.board[x][y] = 'O';
             return null;
         }
         else {
@@ -38,7 +39,7 @@ class Gameboard {
     checkSunkShips() {
         for (let i = 0; i < this.length; i++) {
             for (let j = 0; j < this.width; j++) {
-                if (this.board[i][j] == null || this.board[i][j] == 0) {
+                if (this.board[i][j] == null || this.board[i][j] == 'O') {
                     continue;
                 }
                 else {
