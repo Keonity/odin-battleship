@@ -35,6 +35,22 @@ class Gameboard {
         }
     }
 
+    checkSunkShips() {
+        for (let i = 0; i < this.length; i++) {
+            for (let j = 0; j < this.width; j++) {
+                if (this.board[i][j] == null || this.board[i][j] == 0) {
+                    continue;
+                }
+                else {
+                    if (!this.board[i][j].isSunk()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
 };
 
 module.exports = { Gameboard }
