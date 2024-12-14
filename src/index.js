@@ -1,4 +1,10 @@
 import './styles.css';
+const { Player } = require('./player');
+
+const player = new Player();
+player.type = "Player";
+const cpu = new Player();
+cpu.type = "Cpu";
 
 const playerBoard = document.getElementById("playerBoard");
 const cpuBoard = document.getElementById("cpuBoard");
