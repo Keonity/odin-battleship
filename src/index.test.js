@@ -10,8 +10,7 @@ CPU.type = "CPU";
 const player = new Player();
 player.type = "Player";
 
-test('Click player 1 space 0', () => {
-    document.body.innerHTML = `
+document.body.innerHTML = `
     <div class="appContainer" id="appContainer">
         <h1 class="title" id="title">Odin's Battleships</h1>
         <div class="gameInterface" id="gameInterface">
@@ -222,6 +221,8 @@ test('Click player 1 space 0', () => {
         })
     });
 
+test('Click player 1 space 0', () => {
+
     playerSpaces[3].click()
     // expect(msg).toEqual(`Clicked player [object HTMLDivElement] #0`);
 
@@ -231,4 +232,46 @@ test('Click player 1 space 0', () => {
     expect(player.gameboard.getShip(0, 3).timesHit).toEqual(1);
 
     expect(CPU.gameboard.getShip(1, 3).timesHit).toEqual(1);
+
+    player.gameboard.resetBoard();
+    CPU.gameboard.resetBoard();
+    /* expect(player.gameboard.getShip(0, 3)).toEqual(null);
+    player.gameboard.placeShip(0, 3);
+    playerSpaces[3].click();
+    expect(player.gameboard.getShip(0, 3).timesHit).toEqual(1); */
+});
+
+test('Take turns', () => {
+    let currentTurn = Math.round(Math.random());
+    
+    CPU.gameboard.placeShip(3, 3);
+    player.gameboard.placeShip(2, 2);
+
+    while (true) {
+        if (currentTurn == 1) {
+            // CPU Turn
+            player.pickRandom();
+            // player.pickSpace(2, 2);
+            // player.pickSpace(2, 3);
+            currentTurn = 0;
+        }
+        else {
+            // Player Turn
+            // cpuSpaces[0].click();
+            // cpuSpaces[1].click();
+            CPU.pickRandom();
+            currentTurn = 1;
+        }
+
+        if (CPU.gameboard.checkSunkShips() == true || player.gameboard.checkSunkShips() == true) {
+            break;
+        }
+    } 
+
+    // CPU.pickSpace(3, 3);
+    // CPU.pickSpace(3, 4);
+    
+
+    expect(CPU.gameboard.checkSunkShips()).toEqual(false);
+    expect(player.gameboard.checkSunkShips()).toEqual(true);
 })

@@ -26,7 +26,7 @@ class Gameboard {
     }
 
     receiveAttack(x, y) {
-        if (this.board[x][y] == null) {
+        if (this.board[x][y] == null || this.board[x][y] == 'O') {
             this.board[x][y] = 'O';
             return null;
         }
@@ -43,13 +43,21 @@ class Gameboard {
                     continue;
                 }
                 else {
-                    if (!this.board[i][j].isSunk()) {
+                    if (!this.getShip(i, j).isSunk()) {
                         return false;
                     }
                 }
             }
         }
         return true;
+    }
+
+    resetBoard() {
+        for (let i = 0; i < this.length; i++) {
+            for (let j = 0; j < this.width; j++) {
+                this.board[i][j] = null;
+            }
+        }
     }
 
 };
