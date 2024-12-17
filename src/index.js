@@ -12,15 +12,8 @@ const cpuBoard = document.getElementById("cpuBoard");
 const playerSpaces = Array.from(playerBoard.children);
 const cpuSpaces = Array.from(cpuBoard.children);
 
-playerSpaces.forEach((child, index) => {
-    let currX = Math.floor(index / 9);
-    let currY = index % 9;
-    child.addEventListener("click", () => {
-        if ((player.gameboard.getShip(currX, currY) != null)) {
-            player.gameboard.receiveAttack(currX, currY); // Hits twice because ships occupy two spaces each
-        }
-    })
-})
+cpu.gameboard.placeShip(3, 3);
+player.gameboard.placeShip(2, 2);
 
 cpuSpaces.forEach((child, index) => {
     let currX = Math.floor(index / 9);
@@ -29,19 +22,7 @@ cpuSpaces.forEach((child, index) => {
         if ((cpu.gameboard.getShip(currX, currY) != null)) {
             cpu.gameboard.receiveAttack(currX, currY); // Hits twice because ships occupy two spaces each
         }
-    })
-});
 
-let currentTurn = Math.round(Math.random());
-    
-cpu.gameboard.placeShip(3, 3);
-player.gameboard.placeShip(2, 2);
-
-cpuSpaces.forEach((child, index) => {
-    child.addEventListener("click", () => {
-
-        let currX = Math.floor(index / 9);
-        let currY = index % 9;
         if (cpu.gameboard.getShip(currX, currY) == null || cpu.gameboard.getShip(currX, currY) == 'O') {
             child.setAttribute("class", "missedShot");
         }
@@ -58,48 +39,18 @@ cpuSpaces.forEach((child, index) => {
         }
 
         if (cpu.gameboard.checkSunkShips() == true) {
-            console.log('Player Win');
+            player.score++;
+            document.querySelector("#playerScore").innerHTML = `Score: ${player.score}`;
+            alert("Player win!");
+            cpu.gameboard.resetBoard();
+            player.gameboard.resetBoard();
         }
-        
-        if (player.gameboard.checkSunkShips() == true) {
-            console.log('CPU Win');
+        else if (player.gameboard.checkSunkShips() == true) {
+            cpu.score++;
+            document.querySelector("#cpuScore").innerHTML = `Score: ${cpu.score}`;
+            alert("CPU win!");
+            cpu.gameboard.resetBoard();
+            player.gameboard.resetBoard();
         }
     })
-})
-
-/* while (true) {
-    if (currentTurn == 1) {
-        // CPU Turn
-        let coords = player.pickRandom();
-
-        
-        // player.pickSpace(2, 2);
-        // player.pickSpace(2, 3);
-        currentTurn = 0;
-    }
-    else {
-        let coords = cpu.pickRandom();
-        // Player Turn
-        // cpuSpaces[0].click();
-        // cpuSpaces[1].click();
-        
-        currentTurn = 1;
-    }
-
-    if (cpu.gameboard.checkSunkShips() == true || player.gameboard.checkSunkShips() == true) {
-        break;
-    }
-} */
-
-/* if (cpu.gameboard.checkSunkShips() == true) {
-    console.log('Player Win');
-}
-else if (player.gameboard.checkSunkShips() == true) {
-    console.log('CPU Win');
-} */
-
-// cpu.gameboard.resetBoard();
-// player.gameboard.resetBoard();
-
-    // CPU.pickSpace(3, 3);
-    // CPU.pickSpace(3, 4);
+});

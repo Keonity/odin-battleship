@@ -61,8 +61,21 @@ class Gameboard {
                 this.board[i][j] = null;
             }
         }
-    }
 
+        const playerBoard = document.getElementById("playerBoard");
+        const cpuBoard = document.getElementById("cpuBoard");
+
+        const playerSpaces = Array.from(playerBoard.children);
+        const cpuSpaces = Array.from(cpuBoard.children);
+
+        playerSpaces.forEach((e) => {
+            e.setAttribute("class", "space");
+        })
+
+        cpuSpaces.forEach((e) => {
+            e.setAttribute("class", "space");
+        })
+    }
 };
 
 module.exports = { Gameboard }

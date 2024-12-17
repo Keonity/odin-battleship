@@ -4,6 +4,7 @@ class Player {
     constructor() {
         this.gameboard = new Gameboard(9, 9);
         this.type;
+        this.score = 0;
     }
 
     pickRandom() {
