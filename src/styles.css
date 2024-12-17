@@ -94,3 +94,17 @@ input[type='text'] {
     border: 1px black solid;
     padding: 5%;
 }
+
+.missedShot {
+    display: flex;
+    background-color: #658faa;
+    border: 1px black solid;
+    padding: 5%;
+}
+
+.hitShot {
+    display: flex;
+    background-color: #f17a7a;
+    border: 1px black solid;
+    padding: 5%;
+}

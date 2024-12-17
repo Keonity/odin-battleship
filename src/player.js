@@ -15,6 +15,7 @@ class Player {
         }
 
         this.gameboard.receiveAttack(x, y);
+        return { x, y };
     }
 
     pickSpace(x, y) {

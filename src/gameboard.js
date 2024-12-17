@@ -20,6 +20,9 @@ class Gameboard {
         if (this.board[x][y] == null) {
             return null;
         }
+        else if (this.board[x][y] == 'O') {
+            return 'O';
+        }
         else {
             return this.board[x][y];
         }
