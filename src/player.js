@@ -10,11 +10,11 @@ class Player {
     pickRandom() {
         let x = Math.floor(Math.random() * 9);
         let y = Math.floor(Math.random() * 9);
-        while (this.gameboard.getShip(x, y) == 'O') {
+        while (this.gameboard.getShip(x, y) == 'O' || this.gameboard.getShip(x, y) == 'X') {
             x = Math.floor(Math.random() * 9);
             y = Math.floor(Math.random() * 9);
         }
-
+        
         this.gameboard.receiveAttack(x, y);
         return { x, y };
     }

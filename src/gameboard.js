@@ -10,10 +10,32 @@ class Gameboard {
         }
     }
 
-    placeShip(x, y) {
-        const newShip = new Ship(2);
-        this.board[x][y] = newShip;
-        this.board[x][y + 1] = newShip;
+    placeShip(x, y, shipSize) {
+        const newShip = new Ship(shipSize);
+
+        while ((y + shipSize) > this.length) {
+            y = parseInt(prompt(`Ship too long to be placed at (${x}, ${y}), please enter a new Y coordinate.`));
+        }
+
+        if (shipSize > 1) {
+            for (let i = y; i < (y + shipSize); i++) {
+                while (this.getShip(x, i) !== null && this.getShip(x, i) !== 'O') {
+                    y = parseInt(prompt(`Ship placement (${x}, ${y}) conflicts with another ship, please enter a new Y coordinate.`));
+                    i = y;
+                }
+            }
+    
+            for (let i = y; i < (y + shipSize); i++) {
+                this.board[x][i] = newShip;
+            }
+        }
+
+        else {
+            while (this.getShip(x, y) !== null && this.getShip(x, y) !== 'O') {
+                y = parseInt(prompt(`Ship placement (${x}, ${y}) conflicts with another ship, please enter a new Y coordinate.`));
+            }
+            this.board[x][y] = newShip;
+        }
     }
 
     getShip(x, y) {
@@ -35,14 +57,14 @@ class Gameboard {
         }
         else {
             this.board[x][y].hit();
-            return this.board[x][y].timesHit;
+            this.board[x][y] = 'X';
         }
     }
 
     checkSunkShips() {
         for (let i = 0; i < this.length; i++) {
             for (let j = 0; j < this.width; j++) {
-                if (this.board[i][j] == null || this.board[i][j] == 'O') {
+                if (this.board[i][j] == null || this.board[i][j] == 'O' || this.board[i][j] == 'X') {
                     continue;
                 }
                 else {

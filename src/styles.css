@@ -95,6 +95,13 @@ input[type='text'] {
     padding: 5%;
 }
 
+.occupiedSpace {
+    display: flex;
+    background-color: #62b9ae;
+    border: 1px black solid;
+    padding: 5%;
+}
+
 .missedShot {
     display: flex;
     background-color: #658faa;
