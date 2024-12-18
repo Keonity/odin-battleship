@@ -20,7 +20,7 @@ class Gameboard {
         if (shipSize > 1) {
             for (let i = y; i < (y + shipSize); i++) {
                 while (this.getShip(x, i) !== null && this.getShip(x, i) !== 'O') {
-                    y = parseInt(prompt(`Ship placement (${x}, ${y}) conflicts with another ship, please enter a new Y coordinate.`));
+                    y = parseInt(prompt(`Ship placement conflicts with another ship, please enter a new Y coordinate. (Current coordinates hidden for gameplay balance.)`));
                     i = y;
                 }
             }

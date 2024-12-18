@@ -115,3 +115,10 @@ input[type='text'] {
     border: 1px black solid;
     padding: 5%;
 }
+
+.winMessage {
+    display: flex;
+    background-color: cornflowerblue;
+    border: 1px black solid;
+    padding: 5%;
+}

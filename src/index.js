@@ -21,16 +21,12 @@ function placeCpuShips() {
     let x3 = Math.floor(Math.random() * 9);
     let y3 = Math.floor(Math.random() * 4);
 
-    for (let i = y2; i < y2 + 3; i++) {
-        if (i == y || i == y3) {
-            y2 = Math.floor(Math.random() * 6); 
-        }
+    while ((y >= y2 && y <= y2 + 3) || (y >= y3 && y <= y3 + 5)) {
+        y = Math.floor(Math.random() * 9);
     }
 
-    for (let i = y3; i < y3 + 5; i++) {
-        if (i == y || i == y2) {
-            y3 = Math.floor(Math.random() * 4); 
-        }
+    while ((y2 >= y3 && y2 <= y3 + 5)) {
+        y2 = Math.floor(Math.random() * 6);
     }
 
     cpu.gameboard.placeShip(x, y, 1);
@@ -39,6 +35,10 @@ function placeCpuShips() {
 }
 
 function placePlayerShips() {
+    if (!player.gameboard.checkSunkShips()) {
+        return;
+    }
+
     alert('The following prompts assume the positive X-axis to be from top to bottom and positive Y-axis to be from left to right.')
 
     let x = parseInt(prompt('Please enter the x coordinate for your small ship.'));
@@ -75,9 +75,6 @@ function placePlayerShips() {
     playerSpaces[9 * x3 + y3 + 4].setAttribute("class", "occupiedSpace");
 }
 
-placeCpuShips();
-placePlayerShips();
-
 function handleClick(index) {
     let currX = Math.floor(index / 9);
     let currY = index % 9;
@@ -109,75 +106,51 @@ function handleClick(index) {
     if (cpu.gameboard.checkSunkShips() == true) {
         player.score++;
         document.querySelector("#playerScore").innerHTML = `Score: ${player.score}`;
-        alert("Player win!");
+        const winBanner = document.createElement("h2");
+        winBanner.innerHTML = "Player Win!";
+        document.querySelector("#playerScore").appendChild(winBanner);
+        setTimeout(function() {
+            alert("Player win!");
+            winBanner.remove();
+        }, 1);
         cpu.gameboard.resetBoard();
         player.gameboard.resetBoard();
         placeCpuShips();
-        placePlayerShips();
+        setTimeout(function() {
+            placePlayerShips()}, 2);
         cpuSpaces.forEach((child, index) => {
             child.disabled = false;
-            child.addEventListener("click", handleClick.bind(child, index))
+            // child.addEventListener("click", handleClick.bind(child, index))
         });
     }
     else if (player.gameboard.checkSunkShips() == true) {
         cpu.score++;
         document.querySelector("#cpuScore").innerHTML = `Score: ${cpu.score}`;
-        alert("CPU win!");
+        const winBanner = document.createElement("h2");
+        winBanner.innerHTML = "CPU Win!";
+        document.querySelector("#cpuScore").appendChild(winBanner);
+        setTimeout(function() {
+            alert("CPU win!");
+            winBanner.remove();
+        }, 1);
         cpu.gameboard.resetBoard();
         player.gameboard.resetBoard();
         placeCpuShips();
-        placePlayerShips();
+        setTimeout(function() {
+            placePlayerShips()}, 2);
         cpuSpaces.forEach((child, index) => {
             child.disabled = false;
-            child.addEventListener("click", handleClick.bind(child, index))
+            // child.addEventListener("click", handleClick.bind(child, index))
         });
     }
 }
 
-cpuSpaces.forEach((child, index) => {
-    child.addEventListener("click", handleClick.bind(child, index)
-        /* if (child.disabled) {
-            return;
-        }
-
-        if ((cpu.gameboard.getShip(currX, currY) != null)) {
-            cpu.gameboard.receiveAttack(currX, currY); // Hits twice because ships occupy two spaces each
-        }
-
-        if (cpu.gameboard.getShip(currX, currY) == null || cpu.gameboard.getShip(currX, currY) == 'O') {
-            child.setAttribute("class", "missedShot");
-            child.disabled = true;
-        }
-        else {
-            child.setAttribute("class", "hitShot");
-            child.disabled = true;
-        }
-
-        let coords = player.pickRandom();
-        if (player.gameboard.getShip(coords.x, coords.y) == null || player.gameboard.getShip(coords.x, coords.y) == 'O') {
-            playerSpaces[((9 * coords.x) + coords.y)].setAttribute("class", "missedShot");
-        }
-        else {
-            playerSpaces[((9 * coords.x) + coords.y)].setAttribute("class", "hitShot");
-        }
-
-        if (cpu.gameboard.checkSunkShips() == true) {
-            player.score++;
-            document.querySelector("#playerScore").innerHTML = `Score: ${player.score}`;
-            alert("Player win!");
-            cpu.gameboard.resetBoard();
-            player.gameboard.resetBoard();
-            placeCpuShips();
-            placePlayerShips();
-        }
-        else if (player.gameboard.checkSunkShips() == true) {
-            cpu.score++;
-            document.querySelector("#cpuScore").innerHTML = `Score: ${cpu.score}`;
-            alert("CPU win!");
-            cpu.gameboard.resetBoard();
-            player.gameboard.resetBoard();
-            placeCpuShips();
-            placePlayerShips();
-        } */
-    );
-});
+document.addEventListener("DOMContentLoaded", () => {
+    placeCpuShips();
+    setTimeout(placePlayerShips(), 2);
+    
+    cpuSpaces.forEach((child, index) => {
+        child.addEventListener("click", handleClick.bind(child, index)
+        );
+    });
+})
