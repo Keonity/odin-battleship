@@ -61,6 +61,14 @@ input[type='text'] {
     100% { transform: rotate(360deg); }
 }
 
+.instructions {
+    display: flex;
+    justify-content: center;
+    background-color: #3460db;
+    text-align: center;
+    color: white;
+}
+
 .gameInterface {
     display: flex;
     justify-content: center;

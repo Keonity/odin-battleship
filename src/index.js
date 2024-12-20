@@ -42,22 +42,64 @@ function placePlayerShips() {
     alert('The following prompts assume the positive X-axis to be from top to bottom and positive Y-axis to be from left to right.')
 
     let x = parseInt(prompt('Please enter the x coordinate for your small ship.'));
+
+    while (x > 9) {
+        x = parseInt(prompt(`X coordinate for small ship (${x}) too high, please lower it.`));
+    }
+
+    while (x < 0) {
+        x = parseInt(prompt(`X coordinate for small ship (${x}) too low, please increase it.`));
+    }
+
     let y = parseInt(prompt('Please enter the y coordinate for your small ship.'));
-    let x2 = parseInt(prompt('Please enter the x coordinate for your medium ship.'));
-    let y2 = parseInt(prompt('Please enter the y coordinate for your medium ship.'));
-    let x3 = parseInt(prompt('Please enter the x coordinate for your large ship.'));
-    let y3 = parseInt(prompt('Please enter the y coordinate for your large ship.'));
 
     while (y > 9) {
         y = parseInt(prompt(`Y coordinate for small ship (${y}) too high, please lower it.`));
     }
 
-    while (y2 > 6) {
-        y2 = parseInt(prompt(`Y coordinate for medimum ship (${y2}) too high, please lower it.`));
+    while (y < 0) {
+        y = parseInt(prompt(`Y coordinate for small ship (${y}) too low, please increase it.`));
     }
+
+    let x2 = parseInt(prompt('Please enter the x coordinate for your medium ship.'));
+
+    while (x2 > 9) {
+        x2 = parseInt(prompt(`X coordinate for medium ship (${x2}) too high, please lower it.`));
+    }
+
+    while (x2 < 0) {
+        x2 = parseInt(prompt(`X coordinate for medium ship (${x2}) too low, please increase it.`));
+    }
+
+    let y2 = parseInt(prompt('Please enter the y coordinate for your medium ship.'));
+
+
+    while (y2 > 6) {
+        y2 = parseInt(prompt(`Y coordinate for medium ship (${y2}) too high, please lower it.`));
+    }
+
+    while (y2 < 0) {
+        y2 = parseInt(prompt(`Y coordinate for medium ship (${y2}) too low, please increase it.`));
+    }
+
+    let x3 = parseInt(prompt('Please enter the x coordinate for your large ship.'));
+
+    while (x3 > 9) {
+        x3 = parseInt(prompt(`X coordinate for large ship (${x3}) too high, please lower it.`));
+    }
+
+    while (x3 < 0) {
+        x3 = parseInt(prompt(`X coordinate for large ship (${x3}) too low, please increase it.`));
+    }
+
+    let y3 = parseInt(prompt('Please enter the y coordinate for your large ship.'));
 
     while (y3 > 4) {
         y3 = parseInt(prompt(`Y coordinate for large ship (${y3}) too high, please lower it.`));
+    }
+
+    while (y3 < 0) {
+        y3 = parseInt(prompt(`Y coordinate for large ship (${y3}) too low, please increase it.`));
     }
 
     player.gameboard.placeShip(x, y, 1);
@@ -108,7 +150,8 @@ function handleClick(index) {
         document.querySelector("#playerScore").innerHTML = `Score: ${player.score}`;
         const winBanner = document.createElement("h2");
         winBanner.innerHTML = "Player Win!";
-        document.querySelector("#playerScore").appendChild(winBanner);
+        winBanner.setAttribute("class", "result");
+        document.querySelector(".appContainer").insertBefore(winBanner, document.querySelector(".gameInterface"));
         setTimeout(function() {
             alert("Player win!");
             winBanner.remove();
@@ -128,7 +171,8 @@ function handleClick(index) {
         document.querySelector("#cpuScore").innerHTML = `Score: ${cpu.score}`;
         const winBanner = document.createElement("h2");
         winBanner.innerHTML = "CPU Win!";
-        document.querySelector("#cpuScore").appendChild(winBanner);
+        winBanner.setAttribute("class", "result");
+        document.querySelector(".appContainer").insertBefore(winBanner, document.querySelector(".gameInterface"));
         setTimeout(function() {
             alert("CPU win!");
             winBanner.remove();
