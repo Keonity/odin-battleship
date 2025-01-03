@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin's Battleships</title>
+<script defer src="main.js"></script></head>
+<body>
+    <div class="appContainer" id="appContainer">
+        <h1 class="title" id="title">Odin's Battleships</h1>
+        <div class="instructions" id="instructions">To play, click on any enemy tile. If you hit an enemy ship, it will be indicated by a red square. Your ships are indicated by a green square. Your goal is to sink all enemy ships before the CPU sinks yours!</div>
+        <div class="gameInterface" id="gameInterface">
+            <div class="playerContainer" id="playerContainer">
+                <h2 class="playerTitle" id="playerName">Player</h2>
+                <h3 class="playerScore" id="playerScore">Score: 0</h3>
+                <div class="gameboard" id="playerBoard">
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                </div>
+            </div>
+            <div class="cpuContainer" id="cpuContainer">
+                <h2 class="playerTitle" id="cpuTitle">CPU</h2>
+                <h3 class="playerScore" id="cpuScore">Score: 0</h3>
+                <div class="gameboard" id="cpuBoard">
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                    <div class="space"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
